@@ -1,7 +1,7 @@
 store_dict = {
-	"laptop":{"price":1200, "quantity":5},
-	"headphones":{"price":15000, "quantity":10},
-	"mouse":{"price":400, "quantity":20}
+	#"laptop":{"price":1200, "quantity":5},
+	#"headphones":{"price":15000, "quantity":10},
+	#"mouse":{"price":400, "quantity":20}
 }
 
 def start():
