@@ -125,7 +125,8 @@ def most_expensive_product(store_dict):
 def total_potential_sales(store_dict):
 	total=0
 	for product, details in store_dict.items():
-		total+=details["quantity"]
+		total_each=details["quantity"]*details["price"]
+		total+=total_each
 	print(f"The value of all the remaining stock is: {total}")	
 
 def exit_program():
