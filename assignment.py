@@ -1,7 +1,7 @@
 store_dict = {
-	#"laptop":{"price":1200, "quantity":5},
-	#"headphones":{"price":15000, "quantity":10},
-	#"mouse":{"price":400, "quantity":20}
+	"laptop":{"price":1200, "quantity":5},
+	"headphones":{"price":15000, "quantity":10},
+	"mouse":{"price":400, "quantity":20}
 }
 
 def start():
@@ -23,7 +23,7 @@ def start():
 def call_function(choice):
 	if choice == 1:
 		name=input("Please enter the name of the product: ").lower()
-		price=int(input("Enter Price: "))
+		price=float(input("Enter Price: "))
 		quantity=int(input("Enter Quantity: "))
 		add_product(store_dict, name, price, quantity)
 
@@ -54,17 +54,26 @@ def call_function(choice):
 
 def add_product(store_dict, name, price, quantity):
 	if name not in store_dict:
-		store_dict[name]={"price":price, "quantity":quantity}
-		print("Added successfully!!")
-		print(store_dict)
+		if len(name)==0:
+			print("Product name cannot be empty")
+			
+		elif price > 0 and quantity > 0:
+			store_dict[name]={"price":price, "quantity":quantity}
+			print("Added successfully!!")
+			print(store_dict)
+		else:
+			print("Price and quantity must be more than zero")	
 	else:
 		print("This product already exists.")
 
 def update_stock(store_dict, name, quantity):
 	if name in store_dict:
-		store_dict[name].update({"quantity":quantity})
-		print("Updated Successfully")
-		print(store_dict)
+		if quantity > 0:
+			store_dict[name].update({"quantity":quantity})
+			print("Updated Successfully")
+			print(store_dict)
+		else:
+			print("Quantity should be more than zero")	
 
 	else:
 		print("Product does not exist")	
@@ -72,20 +81,23 @@ def update_stock(store_dict, name, quantity):
 
 def sell_product(store_dict, name, quantity):
 	if name in store_dict:
-		product=store_dict[name]
-		available_quantity=product["quantity"]
-		available_price=product["price"]
-		if quantity<=available_quantity:
-			available_quantity-=quantity
-			store_dict[name].update({"quantity":available_quantity})
-			total_sale=quantity*available_price
-			print(f"The total sale price is {total_sale}")
-			print("Product sold successfully")
+		if quantity > 0:
+			product=store_dict[name]
+			available_quantity=product["quantity"]
+			available_price=product["price"]
+			if quantity<=available_quantity:
+				available_quantity-=quantity
+				store_dict[name].update({"quantity":available_quantity})
+				total_sale=quantity*available_price
+				print(f"The total sale price is {total_sale}")
+				print("Product sold successfully")
 
-			print(store_dict)
+				print(store_dict)
 
+			else:
+				print("Insufficient stock")
 		else:
-			print("Insufficient stock")
+			print("Quantity should be more than zero")		
 
 	else:
 		print("Product does not exist.")		
