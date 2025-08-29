@@ -116,7 +116,7 @@ def most_expensive_product(store_dict):
 	prod=None
 	for product, details in store_dict.items():
 		if details["price"]>most_expensive:
-			most_expensive+=details["price"]	
+			most_expensive=details["price"]	
 			prod=product
 			
 	print(f"The most expensive product is {prod}, its price is {most_expensive}")	
